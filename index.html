@@ -1,14 +1,97 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2e Klasse Stand</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stand 2e Klasse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-  <h1>Stand 2e Klasse Zaalvoetbal</h1>
-  <div id="table-container">Bezig met laden...</div>
-  <script src="script.js"></script>
+
+    <h1>Stand 2e Klasse</h1>
+
+    <table id="standTable">
+        <thead>
+            <tr>
+                <th>Pos</th>
+                <th>Club</th>
+                <th>Wd</th>
+                <th>W</th>
+                <th>G</th>
+                <th>V</th>
+                <th>Dv</th>
+                <th>Dt</th>
+                <th>Gd</th>
+                <th>Pnt</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Tabelrijen worden hier dynamisch geladen -->
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script>
+        // Functie om de CSV in te lezen en weer te geven
+        function loadCSV() {
+            // Pad naar de stand.csv
+            const url = 'stand.csv'; // Je kunt hier het pad naar de CSV aanpassen als dat nodig is.
+
+            // Lees de CSV met behulp van de PapaParse bibliotheek
+            Papa.parse(url, {
+                download: true,
+                header: true, // Zorg ervoor dat de eerste rij als header wordt behandeld
+                dynamicTyping: true,
+                complete: function(results) {
+                    const data = results.data;
+                    const tableBody = document.querySelector('#standTable tbody');
+
+                    // Leeg de tabel voordat nieuwe gegevens worden geladen
+                    tableBody.innerHTML = '';
+
+                    // Vul de tabel met de data uit de CSV
+                    data.forEach(row => {
+                        const tableRow = document.createElement('tr');
+                        Object.values(row).forEach(cell => {
+                            const td = document.createElement('td');
+                            td.textContent = cell;
+                            tableRow.appendChild(td);
+                        });
+                        tableBody.appendChild(tableRow);
+                    });
+                }
+            });
+        }
+
+        // Laad de CSV zodra de pagina is geladen
+        window.onload = loadCSV;
+    </script>
+
 </body>
 </html>
