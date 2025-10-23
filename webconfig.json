@@ -1,6 +1,7 @@
 {
   "title": "De Code van de Verdwenen Hacker",
   "author": "Rick",
-  "hint": "Bekijk de broncode van de pagina voor de eerste aanwijzing.",
-  "nextStep": "/stap2.html"
+  "startCode": "3907",
+  "nextPage": "stap2.html",
+  "notes": "Let op: startCode staat zichtbaar in deze config (client-side)."
 }
