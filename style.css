@@ -1,48 +1,95 @@
-body {
+/* Eenvoudige, donkere 'hacker' stijl */
+:root {
+  --bg: #0a0a0a;
+  --panel: #111;
+  --accent: #00ff9d;
+  --muted: #7fbfb0;
+  --danger: #ff4d6d;
+}
+
+* { box-sizing: border-box; }
+
+html,body {
+  height: 100%;
   margin: 0;
-  font-family: 'Courier New', monospace;
-  background-color: #0a0a0a;
-  color: #00ff9d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  font-family: "Courier New", monospace;
+  background: linear-gradient(180deg, var(--bg), #050505 80%);
+  color: var(--accent);
 }
 
 .container {
-  text-align: center;
-  max-width: 600px;
+  max-width: 760px;
+  margin: 4vh auto;
   padding: 2rem;
-  border: 2px solid #00ff9d;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(0,255,157,0.12);
   border-radius: 10px;
-  background-color: #111;
-  box-shadow: 0 0 20px #00ff9d55;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
 }
 
 h1 {
-  color: #00ffaa;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem 0;
+  color: var(--accent);
+  font-size: 1.6rem;
 }
 
-p {
-  line-height: 1.5;
+p { color: var(--muted); line-height: 1.5; }
+
+.panel {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--panel);
+  border-radius: 8px;
+  border: 1px solid rgba(0,255,157,0.06);
+}
+
+input[type="text"], input[type="number"] {
+  width: 100%;
+  padding: .6rem .8rem;
+  margin-top: .4rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: #060606;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.actions { margin-top: .6rem; }
+
+button, .btn {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(0,255,157,0.14);
+  padding: .5rem .9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover, .btn:hover {
+  background: rgba(0,255,157,0.02);
 }
 
 .terminal {
-  background-color: #000;
-  border: 1px solid #00ff9d;
-  padding: 1rem;
+  background: #000;
+  padding: .8rem;
   margin-top: 1rem;
-  text-align: left;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.03);
+  color: #c6ffdf;
+  font-size: 0.95rem;
 }
 
-.prompt {
-  color: #ff0077;
-}
+.terminal.small { font-size: 0.9rem; padding: .6rem; }
+
+.prompt { color: #ff69b4; margin-right: .4rem; }
+
+.feedback { margin-top: .6rem; color: var(--muted); }
 
 footer {
-  position: absolute;
-  bottom: 10px;
-  font-size: 0.8rem;
-  color: #008866;
+  text-align: center;
+  margin-top: 2rem;
+  color: rgba(0,136,102,0.6);
+  font-size: 0.85rem;
 }
