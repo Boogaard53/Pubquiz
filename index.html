@@ -1,25 +1,68 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>De Code van de Verdwenen Hacker</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>De Code van de Verdwenen Hacker — Start</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>🕵️‍♂️ De Code van de Verdwenen Hacker</h1>
-    <p>Welkom, speurneus. Iemand heeft sporen achtergelaten in deze pagina...</p>
-    <p>Kun jij de verborgen aanwijzing vinden en de volgende locatie ontgrendelen?</p>
-    <div class="terminal">
-      <p><span class="prompt">&gt;</span> hint: controleer de broncode...</p>
+    <p>Welkom speurneus. Vind het wachtwoord en ga verder naar de volgende aanwijzing.</p>
+
+    <div class="panel">
+      <label for="code">Voer de code in:</label>
+      <input id="code" type="text" inputmode="numeric" placeholder="Vier cijfers" maxlength="6" />
+      <div class="actions">
+        <button id="checkBtn">Controleer</button>
+      </div>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+    </div>
+
+    <div class="terminal small">
+      <p><span class="prompt">&gt;</span> hint: let op de verborgen tekst in de broncode...</p>
     </div>
   </div>
 
   <footer>
     <p>&copy; 2025 - De Digitale Speurtocht</p>
   </footer>
+
+  <script>
+    // Let op: client-side check — zichtbaar in de broncode
+    const CORRECT = "3907";
+    const btn = document.getElementById('checkBtn');
+    const input = document.getElementById('code');
+    const feedback = document.getElementById('feedback');
+
+    btn.addEventListener('click', check);
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') check();
+    });
+
+    function check() {
+      const val = (input.value || "").trim();
+      if (!val) {
+        feedback.textContent = "Vul eerst een code in.";
+        return;
+      }
+      if (val === CORRECT) {
+        feedback.textContent = "Correct — openen volgende aanwijzing...";
+        // korte vertraging voor effect
+        setTimeout(() => {
+          window.location.href = "stap2.html";
+        }, 700);
+      } else {
+        feedback.textContent = "Verkeerde code. Probeer opnieuw.";
+        input.value = "";
+        input.focus();
+      }
+    }
+  </script>
+
+  <!--
+    Hint voor nieuwsgierige spelers: de code staat in het commentaar of kan worden afgeleid uit een eerdere aanwijzing.
+  -->
 </body>
 </html>
-
-<!-- Hint: De volgende stap is te vinden op /stap2.html -->
